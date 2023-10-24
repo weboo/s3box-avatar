@@ -7,7 +7,9 @@
 
 #define ERACER_COLOR 0x0000
 
-#include "M5GFX.h"
+#ifndef ARDUINO_ESP32_S3_BOX
+  #include "M5GFX.h"
+#endif
 #include "ColorPalette.h"
 #include "Expression.h"
 #include "Gaze.h"

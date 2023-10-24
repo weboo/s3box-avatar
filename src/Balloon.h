@@ -5,7 +5,11 @@
 #ifndef BALLOON_H_
 #define BALLOON_H_
 #define LGFX_USE_V1
-#include <M5Unified.h>
+#ifdef ARDUINO_ESP32_S3_BOX
+  #include <ESP32-Chimera-Core.h>
+#else
+  #include <M5Unified.h>
+#endif
 #include "DrawContext.h"
 #include "Drawable.h"
 

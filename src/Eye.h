@@ -6,7 +6,9 @@
 #define EYE_H_
 
 #define LGFX_USE_V1
-#include <M5GFX.h>
+#ifndef ARDUINO_ESP32_S3_BOX
+  #include <M5GFX.h>
+#endif
 #include "DrawContext.h"
 #include "Drawable.h"
 

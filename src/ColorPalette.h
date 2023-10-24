@@ -4,7 +4,11 @@
 
 #ifndef COLORPALETTE_H_
 #define COLORPALETTE_H_
-#include <M5Unified.h>
+#ifdef ARDUINO_ESP32_S3_BOX
+  #include <ESP32-Chimera-Core.h>
+#else
+  #include <M5Unified.h>
+#endif
 #include <string>
 #include <map>
 #define COLOR_PRIMARY "primary"

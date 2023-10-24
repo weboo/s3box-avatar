@@ -6,7 +6,13 @@
 #define AVATAR_H_
 #include "ColorPalette.h"
 #include "Face.h"
-#include <M5GFX.h>
+#ifdef ARDUINO_ESP32_S3_BOX
+  #ifndef M5Canvas
+  #define M5Canvas LGFX_Sprite
+  #endif
+#else
+  #include <M5GFX.h>
+#endif
 
 namespace m5avatar {
 class Avatar {

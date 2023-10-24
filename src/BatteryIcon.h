@@ -4,8 +4,12 @@
 
 #ifndef BATTERYICON_H_
 #define BATTERYICON_H_
-#include <M5GFX.h>
-#include <M5Unified.h>
+#ifdef ARDUINO_ESP32_S3_BOX
+  #include <ESP32-Chimera-Core.h>
+#else
+  #include <M5GFX.h>
+  #include <M5Unified.h>
+#endif
 #include "DrawContext.h"
 #include "Drawable.h"
 

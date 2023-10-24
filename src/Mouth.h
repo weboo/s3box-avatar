@@ -5,7 +5,9 @@
 #ifndef MOUTH_H_
 #define MOUTH_H_
 
-#include <M5GFX.h>
+#ifndef ARDUINO_ESP32_S3_BOX
+  #include <M5GFX.h>
+#endif
 #include "BoundingRect.h"
 #include "DrawContext.h"
 #include "Drawable.h"

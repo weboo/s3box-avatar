@@ -121,7 +121,7 @@ void Face::draw(DrawContext *ctx) {
   if (tmpSprite->getBuffer() == nullptr) {
     // 出力先と同じcolorDepthを指定することで、DMA転送が可能になる。
     // Display自体は16bit or 24bitしか指定できないが、細長なので1bitではなくても大丈夫。
-    tmpSprite->setColorDepth(M5.Display.getColorDepth());
+    tmpSprite->setColorDepth(M5.Lcd.getColorDepth());
 
     // 確保するメモリは高さ8ピクセルの横長の細長い短冊状とする。
     tmpSprite->createSprite(boundingRect->getWidth(), y_step);
@@ -138,16 +138,16 @@ void Face::draw(DrawContext *ctx) {
     sprite->pushRotateZoom(tmpSprite, boundingRect->getWidth()>>1, (boundingRect->getHeight()>>1) - y, rotation, scale, scale);
 
     // tmpSpriteから画面に転写
-    M5.Display.startWrite();
+    M5.Lcd.startWrite();
 
     // 事前にstartWriteしておくことで、pushSprite はDMA転送を開始するとすぐに処理を終えて戻ってくる。
-    tmpSprite->pushSprite(&M5.Display, boundingRect->getLeft(), boundingRect->getTop() + y);
+    tmpSprite->pushSprite(&M5.Lcd, boundingRect->getLeft(), boundingRect->getTop() + y);
 
     // DMA転送中にdelay処理を設けることにより、DMA転送中に他のタスクへCPU処理時間を譲ることができる。
     delay(1);
 
     // endWriteによってDMA転送の終了を待つ。
-    M5.Display.endWrite();
+    M5.Lcd.endWrite();
 
   } while ((y += y_step) < boundingRect->getHeight());
 
